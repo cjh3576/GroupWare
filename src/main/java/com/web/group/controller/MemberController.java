@@ -28,4 +28,8 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	//login
+	@RequestMapping(value = "memberLogin", method = RequestMethod.GET)
+	public void memberLogin() throws Exception{};
 }

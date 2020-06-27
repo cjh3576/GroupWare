@@ -47,7 +47,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!--동적팡리 자동반영 -->
+		<!--동적파일 자동반영 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
