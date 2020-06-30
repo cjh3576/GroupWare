@@ -15,4 +15,13 @@ public class MemberServiceImpl implements MemberService{
 	public List<MemberVO> selectListMember() throws Exception {
 		return memberDAO.selectListMember();
 	}
+
+
+	@Override
+	public MemberVO login(MemberVO memberVO) throws Exception {
+		return memberDAO.login(memberVO);
+	}
+	
+	
+	
 }

@@ -7,4 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberDAO {
 	public List<MemberVO> selectListMember();
+	
+	
+	//login
+	public MemberVO login(MemberVO memberVO);
 }

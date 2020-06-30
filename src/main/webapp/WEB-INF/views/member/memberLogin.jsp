@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 	<div id="app">
 	{{message}}
 	</div>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <script>
       new Vue({
         el: "#app",
