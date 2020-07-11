@@ -21,6 +21,18 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO login(MemberVO memberVO) throws Exception {
 		return memberDAO.login(memberVO);
 	}
+
+
+	@Override
+	public MemberVO getMember(MemberVO memberVO) {
+		return memberDAO.getMember(memberVO);
+	}
+
+	//mypage
+	@Override
+	public MemberVO getSelect(String id) throws Exception {
+		return memberDAO.getSelect(id);
+	}
 	
 	
 	
