@@ -13,4 +13,6 @@ public interface MemberDAO {
 	public MemberVO login(MemberVO memberVO);
 	//my page
 	public MemberVO getSelect(String id);
+	//회원가입
+	public int setWrite(MemberVO memberVO);
 }

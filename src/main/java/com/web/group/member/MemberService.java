@@ -10,4 +10,6 @@ public interface MemberService {
 	MemberVO login(MemberVO memberVO) throws Exception;
 	//mypage
 	MemberVO getSelect(String id) throws Exception;
+	
+	int setWrite(MemberVO memberVO) throws Exception;
 }
