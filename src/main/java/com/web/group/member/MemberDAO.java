@@ -8,7 +8,11 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberDAO {
 	public List<MemberVO> selectListMember();
 	
-	
+	public MemberVO getMember(MemberVO memberVO);
 	//login
 	public MemberVO login(MemberVO memberVO);
+	//my page
+	public MemberVO getSelect(String id);
+	//회원가입
+	public int setWrite(MemberVO memberVO);
 }
