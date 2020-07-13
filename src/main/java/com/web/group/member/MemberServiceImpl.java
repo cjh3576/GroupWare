@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class MemberServiceImpl implements MemberService, UserDetailsService{
+public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDAO memberDAO;
 	
@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService, UserDetailsService{
 		return memberDAO.login(memberVO);
 	}
 
-
+	//로그인
 	@Override
 	public MemberVO getMember(MemberVO memberVO) {
 		return memberDAO.getMember(memberVO);
@@ -45,16 +45,19 @@ public class MemberServiceImpl implements MemberService, UserDetailsService{
 	public int setWrite(MemberVO memberVO) throws Exception {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		memberVO.setPw(passwordEncoder.encode(memberVO.getPw()));
-		
 		return memberDAO.setWrite(memberVO);
 	}
-///////////////////////////////user detail
-	
-	
+	//
+
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public int setUpdate(MemberVO memberVO) throws Exception {
+		return memberDAO.setUpdate(memberVO);
+	}
+
+
+	@Override
+	public int setDelete(String id) throws Exception {
+		return memberDAO.setDelete(id);
 	}
 	
 	

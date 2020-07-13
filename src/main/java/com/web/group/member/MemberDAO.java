@@ -15,4 +15,10 @@ public interface MemberDAO {
 	public MemberVO getSelect(String id);
 	//회원가입
 	public int setWrite(MemberVO memberVO);
+	
+	//회원수정
+	public int setUpdate(MemberVO memberVO);
+	
+	//회원 탈퇴
+	public int setDelete(String id);
 }

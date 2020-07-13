@@ -10,6 +10,10 @@ public interface MemberService {
 	MemberVO login(MemberVO memberVO) throws Exception;
 	//mypage
 	MemberVO getSelect(String id) throws Exception;
-	
+	//회원 가입
 	int setWrite(MemberVO memberVO) throws Exception;
+	//회원수정
+	int setUpdate(MemberVO memberVO) throws Exception;
+	//회원탈퇴
+	int setDelete(String id) throws Exception;
 }

@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 		.antMatchers("/admin/**").authenticated() //인증된 사람만
+		.antMatchers("/member/memberJoin").permitAll()
 		.antMatchers("/member/login").permitAll() //모두 가능
 		.antMatchers("/**").authenticated();
 		
@@ -50,9 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.passwordParameter("pw");
 		
 		http.logout()
+		.logoutUrl("/member/logout")
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/")
-		.invalidateHttpSession(true); //세션 초기화
+		.invalidateHttpSession(true); //세션 무효화
 		
 		http.authenticationProvider(authProvider);
 		//이 클래스로 인증함

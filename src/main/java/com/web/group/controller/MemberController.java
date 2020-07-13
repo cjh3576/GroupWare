@@ -1,5 +1,6 @@
 package com.web.group.controller;
 
+import java.lang.annotation.Target;
 import java.security.Principal;
 import java.util.List;
 
@@ -17,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.web.group.member.MemberService;
 import com.web.group.member.MemberVO;
-
 @Controller
 @RequestMapping("/member/")
 public class MemberController {
@@ -43,6 +43,7 @@ public class MemberController {
 	}
 
 	//logout
+	@GetMapping(value = "/logout")
 	public ModelAndView logout(HttpSession session, ModelAndView mv) throws Exception{
 		session.invalidate(); //무효화
 		mv.setViewName("redirect:../");
@@ -52,7 +53,7 @@ public class MemberController {
 
 	//my page
 	@GetMapping(value = "MyPage")
-	public ModelAndView myPage(ModelAndView mv, HttpSession session,Principal principal) throws Exception{
+	public ModelAndView myPage(ModelAndView mv, Principal principal) throws Exception{
 		MemberVO memberVO = null;
 		String id = principal.getName();
 
@@ -83,6 +84,44 @@ public class MemberController {
 		} else {
 			mv.addObject("message","join fail");
 			mv.addObject("path","../");
+			mv.setViewName("common/messageMove");
+		}
+		
+		return mv;
+	}
+	//회원수정
+	@GetMapping(value = "memberUpdate")
+	public ModelAndView memberUpdate(ModelAndView mv,MemberVO memberVO) throws Exception{
+		mv.addObject("memberVO",memberVO);
+		mv.setViewName("member/memberUpdate");
+		return mv;
+	}
+	
+	@PostMapping(value = "memberSetUpdate")
+	public ModelAndView memberSetUpdate(ModelAndView mv,@Validated MemberVO memberVO) throws Exception{
+		int result = memberService.setUpdate(memberVO);
+		if(result>0) {
+			mv.setViewName("redirect:./MyPage");
+		} else {
+			mv.addObject("message","수정을 실패하였습니다.");
+			mv.addObject("path","./memberUpdate");
+			mv.setViewName("common/messageMove");
+		}
+		
+		return mv;
+	}
+	
+	//회원탈퇴
+	@GetMapping(value = "memberDelete")
+	public ModelAndView memberDelete(ModelAndView mv,HttpSession session, Principal principal) throws Exception{
+		String id = principal.getName();
+		int result = memberService.setDelete(id);
+		if(result>0) {
+			mv.setViewName("redirect:../");
+			session.invalidate();
+		} else {
+			mv.addObject("message","회원 탈퇴 실패");
+			mv.addObject("path","./");
 			mv.setViewName("common/messageMove");
 		}
 		

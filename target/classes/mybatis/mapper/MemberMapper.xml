@@ -39,5 +39,25 @@
 		#{rank}
 	)
 	</insert>
+	<!-- 회원수정  -->
+	<update id="setUpdate" parameterType="memberVO">
+		UPDATE member
+		SET 
+			pw = #{pw},
+			phone = #{phone},
+			email = #{email},
+			team = #{team},
+			age = #{age},
+			rank = #{rank}
+		WHERE
+			id=#{id}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="setDelete" parameterType="String">
+	DELETE member
+	WHERE id=#{id}
+	</delete>
+	
 	
 </mapper>

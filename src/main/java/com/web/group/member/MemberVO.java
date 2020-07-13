@@ -1,16 +1,29 @@
 package com.web.group.member;
 
+import javax.validation.constraints.NotBlank;
+
+
 public class MemberVO {
 	private int num;
+	@NotBlank
 	private String id;
+	@NotBlank
 	private String pw;
+	@NotBlank
 	private String name;
+	@NotBlank
 	private String regnum;
+	@NotBlank
 	private String phone;
+	@NotBlank
 	private String email;
+	@NotBlank
 	private String gender;
+	@NotBlank
 	private int age;
+	@NotBlank
 	private String team;
+	@NotBlank
 	private String rank;
 	
 	public MemberVO() {}

@@ -35,11 +35,11 @@ public class AuthProvider implements AuthenticationProvider{
 	}
 
 	private Authentication authenticate(String id, String pw)throws AuthenticationException {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		MemberVO memberVO = new MemberVO(id, pw);
-		System.out.println("내가입력한거"+pw);
 		memberVO = memberService.getMember(memberVO);
-		System.out.println("DB:"+memberVO.getPw());
-		if(memberVO == null || !memberVO.getPw().equals(pw)) {
+		String encPw = memberVO.getPw();
+		if(memberVO == null || !passwordEncoder.matches(pw, encPw)) {
 			return null;
 		}
 		List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
