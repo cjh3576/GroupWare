@@ -11,5 +11,6 @@
 		<typeAlias type="java.util.Date" alias="Date" />
 		<typeAlias type="java.util.Map" alias="Map" />
 		<typeAlias type="com.web.group.member.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.web.group.workmanage.WorkManageVO" alias="WorkManageVO"/>
 	</typeAliases>
 </configuration>
