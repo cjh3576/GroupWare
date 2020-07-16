@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.web.group.memberImage.MemberImageDAO">
+  	<insert id="setWrite" parameterType="MemberImageVO">
+	INSERT INTO memberimage
+	VALUES (
+		memberimage_seq.nextval, #{mid},#{fname},#{oname}
+	)
+  	</insert>
+  	
+  	<select id="getSelect" parameterType="MemberVO">
+  	SELECT *
+  	FROM memberImage
+  	WHERE mid = #{mid}
+  	</select>
+  	
+  	<delete id="setDelete" parameterType="Integer">
+  	DELETE memberImage
+  	WHERE fnum = #{fnum}
+  	</delete>
+  	
+ 	<update id="setUpdate" parameterType="MemberImageVO">
+ 	UPDATE memberimage 
+ 	SET fname=#{fname},
+ 		oname = #{oname}
+ 	WHERE mid = #{mid}
+ 	</update>
+  
+  </mapper>

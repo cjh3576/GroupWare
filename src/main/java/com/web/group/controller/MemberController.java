@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.group.member.MemberService;
@@ -77,8 +78,8 @@ public class MemberController {
 	
 	
 	@PostMapping(value = "memberJoin")
-	public ModelAndView memberJoin(@Validated MemberVO memberVO, ModelAndView mv) throws Exception{
-		int result = memberService.setWrite(memberVO);
+	public ModelAndView memberJoin(@Validated MemberVO memberVO, ModelAndView mv,HttpSession session, MultipartFile multiPartFile) throws Exception{
+		int result = memberService.setWrite(memberVO, session, multiPartFile);
 		if(result> 0) {
 			mv.setViewName("redirect:./login");
 		} else {
