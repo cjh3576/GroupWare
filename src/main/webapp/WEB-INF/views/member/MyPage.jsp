@@ -8,6 +8,7 @@
 <title>MJHSOFT</title>
 </head>
 <body>
+	<img alt="" src="../resources/file/${memberVO.memberImageVO.oname}">
 ${memberVO.id }
 ${memberVO.name }
 ${memberVO.regnum }

@@ -3,11 +3,12 @@ package com.web.group.util;
 import java.io.File;
 import java.util.UUID;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
-
+@Component
 public class FileSaver {
-	
 	public String saveFile(String realPath, MultipartFile multipartFile) throws Exception{
 		File file = new File(realPath);
 		if(!file.exists()) {

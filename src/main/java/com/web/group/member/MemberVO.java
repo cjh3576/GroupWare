@@ -2,6 +2,8 @@ package com.web.group.member;
 
 import javax.validation.constraints.NotBlank;
 
+import com.web.group.memberImage.MemberImageVO;
+
 
 public class MemberVO {
 	private int num;
@@ -19,12 +21,13 @@ public class MemberVO {
 	private String email;
 	@NotBlank
 	private String gender;
-	@NotBlank
 	private int age;
 	@NotBlank
 	private String team;
 	@NotBlank
 	private String rank;
+	
+	private MemberImageVO memberImageVO;
 	
 	public MemberVO() {}
 	
@@ -98,5 +101,13 @@ public class MemberVO {
 	}
 	public void setRank(String rank) {
 		this.rank = rank;
+	}
+
+	public MemberImageVO getMemberImageVO() {
+		return memberImageVO;
+	}
+
+	public void setMemberImageVO(MemberImageVO memberImageVO) {
+		this.memberImageVO = memberImageVO;
 	}
 }

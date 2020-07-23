@@ -58,7 +58,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		MemberImageVO memberImageVO = new MemberImageVO();
 		String realPath = session.getServletContext().getRealPath("/resources/file");
-		
+		System.out.println(realPath);
 		int result = memberDAO.setWrite(memberVO);
 		if(result < 1) {
 			throw new Exception();
@@ -69,7 +69,7 @@ public class MemberServiceImpl implements MemberService{
 			memberImageVO.setOname(multipartFile.getOriginalFilename());
 			result = memberImageDAO.setWrite(memberImageVO);
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new Exception();
 		}
 		if(result < 1) {
 			throw new Exception();

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form modelAttribute="memberVO" id="form">
+	<form:form modelAttribute="memberVO" id="form" enctype="multipart/form-data">
 		<table>
 			<tbody>
 				<tr>
@@ -81,23 +81,9 @@
 						<div id="gender_result"></div></td>
 				</tr>
 				<tr>
-					<th>나이</th>
-					<td><form:input path="age" id="age" cssClass="empty_check"
-							readonly="true" /></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><div>
-							<form:errors path="age" />
-						</div>
-						<div id="age_result"></div></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><div>
-							<form:errors path="age" />
-						</div>
-						<div id="age_result"></div></td>
+					<th>나이<span>*</span></th>
+					<td><form:input path="age" id="age" cssClass="empty_check" />
+					</td>
 				</tr>
 				<tr>
 					<th>소속부서<span>*</span></th>
@@ -108,6 +94,10 @@
 					<th>직급<span>*</span></th>
 					<td><form:input path="rank" id="rank" cssClass="empty_check" />
 					</td>
+				</tr>
+				<tr>
+					<th>사진</th>
+					<td><input type="file" name="multiPartFile" id="add">
 				</tr>
 			</tbody>
 		</table>

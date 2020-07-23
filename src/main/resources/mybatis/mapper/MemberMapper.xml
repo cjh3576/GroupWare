@@ -2,30 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.group.member.MemberDAO">
+	<resultMap type="MemberImageVO" id="fileResult">
+		<id property="fnum" column="fnum" />
+		<result property="fname" column="fname" />
+		<result property="oname" column="oname"/>
+	</resultMap>
+
+	<resultMap type="MemberVO" id="member">
+		<id property="num" column="num"/>
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="name" column="name"/>
+		<result property="regnum" column="regnum"/>
+		<result property="phone" column="phone"/>
+		<result property="email" column="email"/>
+		<result property="gender" column="gender"/>
+		<result property="age" column="age"/>
+		<result property="team" column="team"/>
+		<result property="rank" column="rank"/>
+		<association property="memberImageVO" resultMap="fileResult" javaType="MemberImageVO">
+		</association>
+	</resultMap>
+
 	<select id="selectListMember" resultType="MemberVO">
 		select * from test
 	</select>
 	<!-- security login -->
-	<select id="getMember" parameterType="MemberVO" resultType="MemberVO">
+	<select id="getMember" parameterType="MemberVO"
+		resultType="MemberVO">
 		select id,pw
 		from member
 		where id=#{id}
 	</select>
-	
-	<!-- 회원 my page   -->
-	<select id="getSelect" parameterType="String" resultType="MemberVO">
-		SELECT *
-		FROM member
+
+	<!-- 회원 my page -->
+	<select id="getSelect" parameterType="String"
+		resultMap="member">
+		SELECT M.*, F.* 
+		FROM member M
+		FULL JOIN memberimage F
+		ON(M.id = F.mid)
 		WHERE id=#{id}
 	</select>
-	<!--회원가입  -->
+	<!--회원가입 -->
 	<insert id="setWrite" parameterType="MemberVO">
-	<selectKey keyProperty="num" order="BEFORE" resultType="Integer">
-		select member_seq.nextval from dual
-	</selectKey>
-	
-	INSERT INTO member
-	VALUES (
+		<selectKey keyProperty="num" order="BEFORE"
+			resultType="Integer">
+			select member_seq.nextval from dual
+		</selectKey>
+
+		INSERT INTO member
+		VALUES (
 		#{num},
 		#{id},
 		#{pw},
@@ -37,27 +64,27 @@
 		#{age},
 		#{team},
 		#{rank}
-	)
+		)
 	</insert>
-	<!-- 회원수정  -->
+	<!-- 회원수정 -->
 	<update id="setUpdate" parameterType="memberVO">
 		UPDATE member
-		SET 
-			pw = #{pw},
-			phone = #{phone},
-			email = #{email},
-			team = #{team},
-			age = #{age},
-			rank = #{rank}
+		SET
+		pw = #{pw},
+		phone = #{phone},
+		email = #{email},
+		team = #{team},
+		age = #{age},
+		rank = #{rank}
 		WHERE
-			id=#{id}
+		id=#{id}
 	</update>
-	
+
 	<!-- 회원 탈퇴 -->
 	<delete id="setDelete" parameterType="String">
-	DELETE member
-	WHERE id=#{id}
+		DELETE member
+		WHERE id=#{id}
 	</delete>
-	
-	
+
+
 </mapper>
